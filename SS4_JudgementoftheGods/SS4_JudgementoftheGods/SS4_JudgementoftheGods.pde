@@ -38,7 +38,7 @@ void draw() {
   stroke(0);
   fill(0, 166, 15);
   textSize(32);
-text("Use your blades to defeat Zeus!",600,60);
+text("Strike Zeus with your blades!",860,40,240,100);
 
 
   //ground under Kratos
