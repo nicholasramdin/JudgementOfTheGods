@@ -21,11 +21,14 @@ float g= 255;
 float b= 0;
 
 PImage img;
+PFont font;
 
 void setup() {
   size(1080, 720);
   frameRate(30);
   img = loadImage("KratosWins.jpg");
+  font = createFont("SourceSansPro-Regular.ttf",32); //load font file from data folder
+  textFont(font);
 }
 
 
@@ -34,7 +37,8 @@ void draw() {
   background(102, 202, 255);
   stroke(0);
   fill(0, 166, 15);
-
+  textSize(32);
+text("Use your blades to defeat Zeus!",600,60);
 
 
   //ground under Kratos
@@ -186,7 +190,7 @@ void draw() {
     for (int i = 60; i < 200; i=i+20) { //rain from cloud when Zeus is defeated
       stroke(0, 0, 255);
       line(i, 250, 100+i, 500);
-      image(img,0,0);
+      image(img,200,100); // load win image if blades hit Zeus
     }
 
     //Defeated Zeus
