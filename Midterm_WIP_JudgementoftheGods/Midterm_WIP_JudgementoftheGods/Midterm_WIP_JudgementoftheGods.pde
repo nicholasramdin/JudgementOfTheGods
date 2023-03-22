@@ -16,6 +16,8 @@
 
 
 
+String state = "titlescreen";
+
 // for Atreus floating orb attack: triggered by mousePressed
 int circleX = 900;
 float circleY = 210.8;
@@ -50,6 +52,18 @@ void setup() {
 
 
 void draw() {
+  if (state=="titlescreen") {
+    titlescreen();
+  } else if (state=="game") {
+    game();
+  } else if (state=="gameover") {
+    gameover();
+  }
+  println(state);
+}
+
+void game(){
+  
   background(102, 202, 255);
   stroke(0);
   fill(0, 166, 15);
@@ -198,7 +212,7 @@ void draw() {
     triangle(440, mouseY, 300, 160, 280, 320); //middle bolt
     triangle(90, 120, 80, 150, 300, 200); // bolt closest to Zeus, the one he's holding
   } else { // if Kratos's fireblades hit Zeus, load Defeated Zeus
-
+state="game over";
     for (int i = 60; i < 200; i=i+20) { //rain from cloud when Zeus is defeated
       stroke(0, 0, 255);
       line(i, 250, 100+i, 500);
@@ -244,15 +258,16 @@ void draw() {
     ellipse(70, 210, 40, 40);
     ellipse(140, 210, 40, 40);
     ellipse(60, 210, 40, 40);
+    
+   
   }
 }
 
-
 //on each mouse press, load different attack image from array
-void mousePressed() {
+//void mousePressed() {
 
-  whichAttack=int(random(attack.length));
-}
+//  whichAttack=int(random(attack.length));
+//}
 
 
 
@@ -345,3 +360,24 @@ void keyPressed() {
     }
   }
 }
+
+void mousePressed(){
+  
+if (state== "titlescreen") {
+    state="game";
+  } else if (state=="game over") {
+    state= "titlescreen";
+  }
+                   }
+
+void titlescreen(){
+  background(0);
+  text("click to start game", width/2, height/2);
+}
+
+void gameover(){
+  background(255, 0, 0);
+  text("everyone loses.", width/2, height/2);
+  text("click to play again.", width/2, height/2 + 50);
+}
+  
