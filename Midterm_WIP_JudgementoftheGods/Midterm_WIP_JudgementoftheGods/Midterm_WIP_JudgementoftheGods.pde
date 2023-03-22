@@ -212,53 +212,7 @@ void game(){
     triangle(440, mouseY, 300, 160, 280, 320); //middle bolt
     triangle(90, 120, 80, 150, 300, 200); // bolt closest to Zeus, the one he's holding
   } else { // if Kratos's fireblades hit Zeus, load Defeated Zeus
-state="gameover";
-    for (int i = 60; i < 200; i=i+20) { //rain from cloud when Zeus is defeated
-      stroke(0, 0, 255);
-      line(i, 250, 100+i, 500);
-      image(img, 200, 100); // load win image if blades hit Zeus
-    }
-
-    //Defeated Zeus
-
-
-    //Defeated Zeus's head
-    strokeWeight(4);
-    stroke(240, 255, 45);
-    fill(255, 0, 0);
-    ellipse(100, 100, 60, 60);
-
-
-    //Defeated Zeus's eyebrows
-    stroke(0);
-    line(90, 70, 100, 80); //left brow (your left not his)
-    line(120, 70, 100, 80); //right brow (your right not his)
-
-    //Defeated Zeus's eyes
-    fill(0);
-    line(90, 90, 110, 100);
-    line(120, 90, 80, 100);
-
-
-
-    //Defeated Zeus's body
-    stroke(240, 255, 45);
-    fill(255, 0, 0);
-    rect(70, 130, 50, 90);
-
-
-    //Defeated Zeus's cloud
-
-    noStroke();
-    fill(0);
-    ellipse(100, 210, 40, 40);
-    ellipse(80, 210, 40, 40);
-    ellipse(110, 210, 40, 40);
-    ellipse(120, 210, 40, 40);
-    ellipse(70, 210, 40, 40);
-    ellipse(140, 210, 40, 40);
-    ellipse(60, 210, 40, 40);
-    
+    state="gameover";
    
   }
 }
@@ -372,12 +326,72 @@ if (state== "titlescreen") {
 
 void titlescreen(){
   background(0);
+  text("Judgement of the Gods", width/4,height/4);
   text("click to start game", width/2, height/2);
 }
 
 void gameover(){
   background(255, 0, 0);
-  text("everyone loses.", width/2, height/2);
-  text("click to play again.", width/2, height/2 + 50);
+ for (int i = 60; i < 200; i=i+20) { //rain from cloud when Zeus is defeated
+      stroke(0, 0, 255);
+      line(i, 250, 100+i, 500);
+      image(img, 200, 100); // load win image if blades hit Zeus
+    }
+    
+    
+    //Defeated Zeus
+
+
+    //Defeated Zeus's head
+    strokeWeight(4);
+    stroke(240, 255, 45);
+    fill(255, 0, 0);
+    ellipse(100, 100, 60, 60);
+
+
+    //Defeated Zeus's eyebrows
+    stroke(0);
+    line(90, 70, 100, 80); //left brow (your left not his)
+    line(120, 70, 100, 80); //right brow (your right not his)
+
+    //Defeated Zeus's eyes
+    fill(0);
+    line(90, 90, 110, 100);
+    line(120, 90, 80, 100);
+
+
+
+    //Defeated Zeus's body
+    stroke(240, 255, 45);
+    fill(255, 0, 0);
+    rect(70, 130, 50, 90);
+
+
+    //Defeated Zeus's cloud
+
+    noStroke();
+    fill(0);
+    ellipse(100, 210, 40, 40);
+    ellipse(80, 210, 40, 40);
+    ellipse(110, 210, 40, 40);
+    ellipse(120, 210, 40, 40);
+    ellipse(70, 210, 40, 40);
+    ellipse(140, 210, 40, 40);
+    ellipse(60, 210, 40, 40);
+
 }
+
+
+  
+  
+  
+  /* Citations
+  
+  IMAGES
+  ____________
+  Kratos Wins image source:
+  https://www.deviantart.com/dimension-dino/art/Death-Battle-Kratos-vs-Guts-314452257 
+  
+  __________________
+  */
   
