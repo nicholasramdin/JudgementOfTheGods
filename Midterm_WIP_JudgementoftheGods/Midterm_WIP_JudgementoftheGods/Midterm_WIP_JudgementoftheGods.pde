@@ -26,17 +26,28 @@ float r= 0;
 float g= 255;
 float b= 0;
 
+//____________________________
+
 
 PImage img;
 PFont font;
 
 PImage[] attack= new PImage[3]; //creating attack array with 3 images
 
+
 int whichAttack=0; // creates variable for tracking position in attack array
+
+
+
+
+//____________________________
+
+
+
 
 void setup() {
   size(1080, 720);
-  frameRate(30);
+
   img = loadImage("KratosWins.jpg");
   font = createFont("SourceSansPro-Regular.ttf", 32); //load font file from data folder
   textFont(font);
@@ -48,6 +59,9 @@ void setup() {
   attack[1]= loadImage ("slash.gif");
   attack[2]= loadImage ("sword.gif");
 }
+
+//____________________________
+
 
 
 
@@ -62,8 +76,16 @@ void draw() {
   println(state);
 }
 
-void game(){
-  
+
+
+
+//____________________________
+
+
+
+
+void game() {
+
   background(102, 202, 255);
   stroke(0);
   fill(0, 166, 15);
@@ -78,6 +100,11 @@ void game(){
 
   //high ground under Atreus
   rect(920, 210, 400, 400);
+
+
+
+
+
 
   //____________________________
 
@@ -105,33 +132,8 @@ void game(){
 
   //____________________________
 
-  //Kratos
 
-  //Kratos's Body
-  strokeWeight(6);
-  stroke(255);
-  fill(182, 0, 0);
-  ellipse(700, 520, 60, 60);
-
-  //Kratos's eyes
-  fill(255);
-  ellipse(710, 510, 10, 10);
-  ellipse(690, 510, 10, 10);
-
-
-  //Kratos's eyebrow
-  stroke(255);
-  line(680, 500, 720, 500);
-
-  //Kratos's body
-  stroke(255);
-  fill(182, 0, 0);
-  rect(680, 550, 50, 90);
-
-  //Kratos's fireblades
-  stroke(185, 37, 0);
-  fill(249, 89, 0); //fireblades color
-  triangle(680, 600, mouseX, mouseY, mouseX, 200); //move mouse to control fireblades
+  kratos();
 
   //____________________________
 
@@ -160,7 +162,13 @@ void game(){
   //____________________________
 
 
+
+
+
+
   // if Kratos has not defeated Zeus
+
+
   if (mouseX > 150) {
 
 
@@ -213,15 +221,21 @@ void game(){
     triangle(90, 120, 80, 150, 300, 200); // bolt closest to Zeus, the one he's holding
   } else { // if Kratos's fireblades hit Zeus, load Defeated Zeus
     state="gameover";
-   
   }
 }
 
-//on each mouse press, load different attack image from array
-//void mousePressed() {
 
-//  whichAttack=int(random(attack.length));
-//}
+
+
+
+
+
+
+//____________________________
+
+
+
+
 
 
 
@@ -234,6 +248,15 @@ void spellrunes() {
     ellipse(i, 190, 100, 100);
   }
 }
+
+
+
+//____________________________
+
+
+
+
+
 
 
 //Kratos
@@ -270,6 +293,15 @@ void kratos() {
 }
 
 
+
+//____________________________
+
+
+
+
+
+
+
 //Kratos Power Up Form
 
 
@@ -302,6 +334,66 @@ void kratosPOWERUP() {
   triangle(680, 600, mouseX, mouseY, mouseX, 200); //move mouse to control iceblades
 }
 
+
+//____________________________
+
+
+
+
+
+
+
+void defeatedZeus() {
+
+  //Defeated Zeus
+
+
+  //Defeated Zeus's head
+  strokeWeight(4);
+  stroke(240, 255, 45);
+  fill(255, 0, 0);
+  ellipse(100, 100, 60, 60);
+
+
+  //Defeated Zeus's eyebrows
+  stroke(0);
+  line(90, 70, 100, 80); //left brow (your left not his)
+  line(120, 70, 100, 80); //right brow (your right not his)
+
+  //Defeated Zeus's eyes
+  fill(0);
+  line(90, 90, 110, 100);
+  line(120, 90, 80, 100);
+
+
+
+  //Defeated Zeus's body
+  stroke(240, 255, 45);
+  fill(255, 0, 0);
+  rect(70, 130, 50, 90);
+
+
+  //Defeated Zeus's cloud
+
+  noStroke();
+  fill(0);
+  ellipse(100, 210, 40, 40);
+  ellipse(80, 210, 40, 40);
+  ellipse(110, 210, 40, 40);
+  ellipse(120, 210, 40, 40);
+  ellipse(70, 210, 40, 40);
+  ellipse(140, 210, 40, 40);
+  ellipse(60, 210, 40, 40);
+}
+
+
+//____________________________
+
+
+
+
+
+
 // if up arrow key is held down, kratos will power up, else kratos is normal
 
 void keyPressed() {
@@ -315,83 +407,75 @@ void keyPressed() {
   }
 }
 
-void mousePressed(){
-  
-if (state== "titlescreen") {
+//____________________________
+
+
+
+
+// mousePress function to click to start game from titlescreen to game and from gameover and return
+
+void mousePressed() {
+
+  if (state== "titlescreen") {
     state="game";
   } else if (state=="game over") {
     state= "titlescreen";
   }
-                   }
+  whichAttack=int(random(attack.length));
+}
 
-void titlescreen(){
+
+
+
+//____________________________
+
+
+
+//titlescreen
+
+void titlescreen() {
   background(0);
-  text("Judgement of the Gods", width/4,height/4);
+  text("Judgement of the Gods", width/4, height/4);
   text("click to start game", width/2, height/2);
 }
 
-void gameover(){
+
+
+
+//____________________________
+
+
+
+
+
+//gameover
+
+void gameover() {
   background(255, 0, 0);
- for (int i = 60; i < 200; i=i+20) { //rain from cloud when Zeus is defeated
-      stroke(0, 0, 255);
-      line(i, 250, 100+i, 500);
-      image(img, 200, 100); // load win image if blades hit Zeus
-    }
-    
-    
-    //Defeated Zeus
+  for (int i = 60; i < 200; i=i+20) { //rain from cloud when Zeus is defeated
+    stroke(0, 0, 255);
+    line(i, 250, 100+i, 500);
+    image(img, 200, 100); // load win image if blades hit Zeus
+  }
 
-
-    //Defeated Zeus's head
-    strokeWeight(4);
-    stroke(240, 255, 45);
-    fill(255, 0, 0);
-    ellipse(100, 100, 60, 60);
-
-
-    //Defeated Zeus's eyebrows
-    stroke(0);
-    line(90, 70, 100, 80); //left brow (your left not his)
-    line(120, 70, 100, 80); //right brow (your right not his)
-
-    //Defeated Zeus's eyes
-    fill(0);
-    line(90, 90, 110, 100);
-    line(120, 90, 80, 100);
-
-
-
-    //Defeated Zeus's body
-    stroke(240, 255, 45);
-    fill(255, 0, 0);
-    rect(70, 130, 50, 90);
-
-
-    //Defeated Zeus's cloud
-
-    noStroke();
-    fill(0);
-    ellipse(100, 210, 40, 40);
-    ellipse(80, 210, 40, 40);
-    ellipse(110, 210, 40, 40);
-    ellipse(120, 210, 40, 40);
-    ellipse(70, 210, 40, 40);
-    ellipse(140, 210, 40, 40);
-    ellipse(60, 210, 40, 40);
-
+  defeatedZeus();
 }
 
 
-  
-  
-  
-  /* Citations
-  
-  IMAGES
-  ____________
-  Kratos Wins image source:
-  https://www.deviantart.com/dimension-dino/art/Death-Battle-Kratos-vs-Guts-314452257 
-  
-  __________________
-  */
-  
+
+
+
+//____________________________
+
+
+
+
+/* Citations
+ 
+ IMAGES
+ ____________
+ Kratos Wins image source:
+ https://www.deviantart.com/dimension-dino/art/Death-Battle-Kratos-vs-Guts-314452257
+ 
+ __________________
+ */
