@@ -25,7 +25,7 @@ int x = 50;
 float r= 0;
 float g= 255;
 float b= 0;
-
+int explosionX = 150;
 //____________________________
 
 
@@ -108,11 +108,11 @@ void game() {
 
   //____________________________
 
-  atreus();
+ atreus();
   //____________________________
 
 
-  kratos();
+ kratos();
 
   //____________________________
 
@@ -137,6 +137,17 @@ void game() {
     ellipse(940, 160, 10, 10);
     ellipse(950, 160, 10, 10);
   }
+  
+  
+if (circleX < 150) {
+
+explosion();
+}
+
+//else if (explosionX) {
+  
+//state =  "gameover()";
+
 
   //____________________________
 
@@ -151,59 +162,29 @@ void game() {
   if (mouseX > 150) {
 
 
-    //Zeus
-
-
-
-    //Zeus's head
-    strokeWeight(4);
-    stroke(240, 255, 45);
-    fill(254, 216, 150);
-    ellipse(100, 100, 60, 60);
-
-
-    //Zeus's eyebrows
-    stroke(0);
-    line(90, 70, 100, 80); //left brow (your left not Zeus's)
-    line(120, 70, 100, 80); //right brow (your right not Zeus's)
-
-    //Zeus's eyes
-    fill(0);
-    ellipse(90, 90, 10, 10);
-    ellipse(120, 90, 10, 10);
-
-
-
-    //Zeus's body
-    stroke(240, 255, 45);
-    fill(254, 216, 150);
-    rect(70, 130, 50, 90);
-
-
-    //Zeus's Cloud
-
-    noStroke();
-    fill(255);
-    ellipse(100, 210, 40, 40);
-    ellipse(80, 210, 40, 40);
-    ellipse(110, 210, 40, 40);
-    ellipse(120, 210, 40, 40);
-    ellipse(70, 210, 40, 40);
-    ellipse(140, 210, 40, 40);
-    ellipse(60, 210, 40, 40);
-
-    //Zeus's bolts
-    stroke(40, 255, 255);
-    fill(240, 255, 45); //bolt color
-    triangle(200, 130, mouseX, 300, 440, 460); //third bolt furthest from Zeus
-    triangle(440, mouseY, 300, 160, 280, 320); //middle bolt
-    triangle(90, 120, 80, 150, 300, 200); // bolt closest to Zeus, the one he's holding
-  } else { // if Kratos's fireblades hit Zeus, load Defeated Zeus
+   Zeus();
+   
+  } 
+  
+  // if Kratos's fireblades hit Zeus, load Defeated Zeus
+  
+  else { 
     state="gameover";
   }
 }
 
+//____________________________
 
+
+
+
+void explosion() {
+  
+  
+   ellipse(explosionX, circleY, x++, x++);
+  
+  
+}
 
 
 
@@ -321,14 +302,14 @@ void kratosPOWERUP() {
 
 
 
-// Atreus
-
-
-
-
-void atreus() {
-
-
+   // Atreus
+   
+   
+   
+   
+void atreus(){
+  
+  
 
 
 
@@ -350,6 +331,8 @@ void atreus() {
   stroke(255);
   fill(182, 0, 0);
   rect(935, 180, 30, 60);
+  
+  
 }
 
 
@@ -357,6 +340,69 @@ void atreus() {
 
 //____________________________
 
+
+
+
+
+
+
+void Zeus(){
+   //Zeus
+
+
+
+    //Zeus's head
+    strokeWeight(4);
+    stroke(240, 255, 45);
+    fill(254, 216, 150);
+    ellipse(100, 100, 60, 60);
+
+
+    //Zeus's eyebrows
+    stroke(0);
+    line(90, 70, 100, 80); //left brow (your left not Zeus's)
+    line(120, 70, 100, 80); //right brow (your right not Zeus's)
+
+    //Zeus's eyes
+    fill(0);
+    ellipse(90, 90, 10, 10);
+    ellipse(120, 90, 10, 10);
+
+
+
+    //Zeus's body
+    stroke(240, 255, 45);
+    fill(254, 216, 150);
+    rect(70, 130, 50, 90);
+
+
+    //Zeus's Cloud
+
+    noStroke();
+    fill(255);
+    ellipse(100, 210, 40, 40);
+    ellipse(80, 210, 40, 40);
+    ellipse(110, 210, 40, 40);
+    ellipse(120, 210, 40, 40);
+    ellipse(70, 210, 40, 40);
+    ellipse(140, 210, 40, 40);
+    ellipse(60, 210, 40, 40);
+
+    //Zeus's bolts
+    stroke(40, 255, 255);
+    fill(240, 255, 45); //bolt color
+    triangle(200, 130, mouseX, 300, 440, 460); //third bolt furthest from Zeus
+    triangle(440, mouseY, 300, 160, 280, 320); //middle bolt
+    triangle(90, 120, 80, 150, 300, 200); // bolt closest to Zeus, the one he's holding
+}
+
+
+
+
+
+
+
+//____________________________
 
 
 
@@ -407,6 +453,9 @@ void defeatedZeus() {
 }
 
 
+
+
+
 //____________________________
 
 
@@ -438,7 +487,7 @@ void mousePressed() {
 
   if (state== "titlescreen") {
     state="game";
-  } else if (state=="game over") {
+  } else if (state=="gameover") {
     state= "titlescreen";
   }
   whichAttack=int(random(attack.length));
@@ -455,6 +504,7 @@ void mousePressed() {
 
 void titlescreen() {
   background(0);
+  fill(255);
   text("Judgement of the Gods", width/4, height/4);
   text("click to start game", width/2, height/2);
 }
