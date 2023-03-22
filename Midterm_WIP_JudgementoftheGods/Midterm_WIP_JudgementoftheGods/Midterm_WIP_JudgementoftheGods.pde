@@ -212,7 +212,7 @@ void game(){
     triangle(440, mouseY, 300, 160, 280, 320); //middle bolt
     triangle(90, 120, 80, 150, 300, 200); // bolt closest to Zeus, the one he's holding
   } else { // if Kratos's fireblades hit Zeus, load Defeated Zeus
-state="game over";
+state="gameover";
     for (int i = 60; i < 200; i=i+20) { //rain from cloud when Zeus is defeated
       stroke(0, 0, 255);
       line(i, 250, 100+i, 500);
