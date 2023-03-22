@@ -108,28 +108,7 @@ void game() {
 
   //____________________________
 
-  // Atreus
-
-
-  //Atreus's Head
-  strokeWeight(2);
-
-  stroke(255);
-  fill(182, 0, 0);
-  ellipse(950, 160, 40, 40);
-
-  //Atreus's Eyes
-
-  fill(255);
-  ellipse(940, 160, 10, 10);
-  ellipse(950, 160, 10, 10);
-
-
-  //Atreus's Body
-  stroke(255);
-  fill(182, 0, 0);
-  rect(935, 180, 30, 60);
-
+  atreus();
   //____________________________
 
 
@@ -141,9 +120,9 @@ void game() {
 
   //Atreus's floating orb attack
 
-  if (mousePressed == true) { //if mouse is pressed, create growing moving ellipse and color them green)
+  if (mousePressed == true) { //if mouse is pressed, create growing moving ellipse and color them hot pink)
     stroke(255);
-    fill(0, 255, 119);
+    fill(255, 0, 151);
     ellipse(circleX, circleY, x++, x++);
     circleX = circleX - 6;
     spellrunes(); // when mouse is pressed activate user function to draw charging spellrune circles
@@ -333,6 +312,47 @@ void kratosPOWERUP() {
   fill(0, 255, 255); //iceblades color
   triangle(680, 600, mouseX, mouseY, mouseX, 200); //move mouse to control iceblades
 }
+
+
+
+
+//____________________________
+
+
+
+
+// Atreus
+
+
+
+
+void atreus() {
+
+
+
+
+
+  //Atreus's Head
+  strokeWeight(2);
+
+  stroke(255);
+  fill(182, 0, 0);
+  ellipse(950, 160, 40, 40);
+
+  //Atreus's Eyes
+
+  fill(255);
+  ellipse(940, 160, 10, 10);
+  ellipse(950, 160, 10, 10);
+
+
+  //Atreus's Body
+  stroke(255);
+  fill(182, 0, 0);
+  rect(935, 180, 30, 60);
+}
+
+
 
 
 //____________________________
