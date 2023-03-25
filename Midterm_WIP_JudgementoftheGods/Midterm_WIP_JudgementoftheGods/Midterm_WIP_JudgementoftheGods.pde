@@ -34,10 +34,11 @@ PFont font;
 
 PImage[] attack= new PImage[3]; //creating attack array with 3 images
 
+PImage[] Zeusgif = new PImage[16];
 
 int whichAttack=0; // creates variable for tracking position in attack array
 
-
+int whichZeusgif;
 
 
 //____________________________
@@ -58,6 +59,25 @@ void setup() {
   attack[0]= loadImage ("charge.gif");
   attack[1]= loadImage ("slash.gif");
   attack[2]= loadImage ("sword.gif");
+
+
+
+  Zeusgif[0] = loadImage ("zeusframe0.png");
+  Zeusgif[1] = loadImage ("zeusframe1.png");
+  Zeusgif[2] = loadImage ("zeusframe2.png");
+  Zeusgif[3] = loadImage ("zeusframe3.png");
+  Zeusgif[4] = loadImage ("zeusframe4.png");
+  Zeusgif[5] = loadImage ("zeusframe5.png");
+  Zeusgif[6] = loadImage ("zeusframe6.png");
+  Zeusgif[7] = loadImage ("zeusframe7.png");
+  Zeusgif[8] = loadImage ("zeusframe8.png");
+  Zeusgif[9] = loadImage ("zeusframe9.png");
+  Zeusgif[10] = loadImage ("zeusframe10.png");
+  Zeusgif[11] = loadImage ("zeusframe11.png");
+  Zeusgif[12] = loadImage ("zeusframe12.png");
+  Zeusgif[13] = loadImage ("zeusframe13.png");
+  Zeusgif[14] = loadImage ("zeusframe14.png");
+  Zeusgif[15] = loadImage ("zeusframe15.png");
 }
 
 //____________________________
@@ -108,11 +128,11 @@ void game() {
 
   //____________________________
 
- atreus();
+  atreus();
   //____________________________
 
 
- kratos();
+  kratos();
 
   //____________________________
 
@@ -137,16 +157,16 @@ void game() {
     ellipse(940, 160, 10, 10);
     ellipse(950, 160, 10, 10);
   }
-  
-  
-if (circleX < 150) {
 
-explosion();
-}
 
-//else if (explosionX) {
-  
-//state =  "gameover()";
+  if (circleX < 150) {
+
+    explosion();
+  }
+
+  //else if (explosionX) {
+
+  //state =  "gameover()";
 
 
   //____________________________
@@ -162,13 +182,12 @@ explosion();
   if (mouseX > 150) {
 
 
-   Zeus();
-   
-  } 
-  
+    Zeus();
+  }
+
   // if Kratos's fireblades hit Zeus, load Defeated Zeus
-  
-  else { 
+
+  else {
     state="gameover";
   }
 }
@@ -179,11 +198,9 @@ explosion();
 
 
 void explosion() {
-  
-  
-   ellipse(explosionX, circleY, x++, x++);
-  
-  
+
+
+  ellipse(explosionX, circleY, x++, x++);
 }
 
 
@@ -302,14 +319,14 @@ void kratosPOWERUP() {
 
 
 
-   // Atreus
-   
-   
-   
-   
-void atreus(){
-  
-  
+// Atreus
+
+
+
+
+void atreus() {
+
+
 
 
 
@@ -331,8 +348,6 @@ void atreus(){
   stroke(255);
   fill(182, 0, 0);
   rect(935, 180, 30, 60);
-  
-  
 }
 
 
@@ -346,54 +361,54 @@ void atreus(){
 
 
 
-void Zeus(){
-   //Zeus
+void Zeus() {
+  //Zeus
 
 
 
-    //Zeus's head
-    strokeWeight(4);
-    stroke(240, 255, 45);
-    fill(254, 216, 150);
-    ellipse(100, 100, 60, 60);
+  //Zeus's head
+  strokeWeight(4);
+  stroke(240, 255, 45);
+  fill(254, 216, 150);
+  ellipse(100, 100, 60, 60);
 
 
-    //Zeus's eyebrows
-    stroke(0);
-    line(90, 70, 100, 80); //left brow (your left not Zeus's)
-    line(120, 70, 100, 80); //right brow (your right not Zeus's)
+  //Zeus's eyebrows
+  stroke(0);
+  line(90, 70, 100, 80); //left brow (your left not Zeus's)
+  line(120, 70, 100, 80); //right brow (your right not Zeus's)
 
-    //Zeus's eyes
-    fill(0);
-    ellipse(90, 90, 10, 10);
-    ellipse(120, 90, 10, 10);
-
-
-
-    //Zeus's body
-    stroke(240, 255, 45);
-    fill(254, 216, 150);
-    rect(70, 130, 50, 90);
+  //Zeus's eyes
+  fill(0);
+  ellipse(90, 90, 10, 10);
+  ellipse(120, 90, 10, 10);
 
 
-    //Zeus's Cloud
 
-    noStroke();
-    fill(255);
-    ellipse(100, 210, 40, 40);
-    ellipse(80, 210, 40, 40);
-    ellipse(110, 210, 40, 40);
-    ellipse(120, 210, 40, 40);
-    ellipse(70, 210, 40, 40);
-    ellipse(140, 210, 40, 40);
-    ellipse(60, 210, 40, 40);
+  //Zeus's body
+  stroke(240, 255, 45);
+  fill(254, 216, 150);
+  rect(70, 130, 50, 90);
 
-    //Zeus's bolts
-    stroke(40, 255, 255);
-    fill(240, 255, 45); //bolt color
-    triangle(200, 130, mouseX, 300, 440, 460); //third bolt furthest from Zeus
-    triangle(440, mouseY, 300, 160, 280, 320); //middle bolt
-    triangle(90, 120, 80, 150, 300, 200); // bolt closest to Zeus, the one he's holding
+
+  //Zeus's Cloud
+
+  noStroke();
+  fill(255);
+  ellipse(100, 210, 40, 40);
+  ellipse(80, 210, 40, 40);
+  ellipse(110, 210, 40, 40);
+  ellipse(120, 210, 40, 40);
+  ellipse(70, 210, 40, 40);
+  ellipse(140, 210, 40, 40);
+  ellipse(60, 210, 40, 40);
+
+  //Zeus's bolts
+  stroke(40, 255, 255);
+  fill(240, 255, 45); //bolt color
+  triangle(200, 130, mouseX, 300, 440, 460); //third bolt furthest from Zeus
+  triangle(440, mouseY, 300, 160, 280, 320); //middle bolt
+  triangle(90, 120, 80, 150, 300, 200); // bolt closest to Zeus, the one he's holding
 }
 
 
@@ -503,10 +518,12 @@ void mousePressed() {
 //titlescreen
 
 void titlescreen() {
-  background(0);
-  fill(255);
-  text("Judgement of the Gods", width/4, height/4);
-  text("click to start game", width/2, height/2);
+  background(255);
+  fill(0);
+  text("JUDGEMENT OF THE GODS", width/4, height/4);
+  text("CLICK TO START GAME", width/2, height/2);
+
+  image(Zeusgif[frameCount%16], 210, 230);
 }
 
 
