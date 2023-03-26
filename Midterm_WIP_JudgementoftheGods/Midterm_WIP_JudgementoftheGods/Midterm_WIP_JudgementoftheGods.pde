@@ -36,9 +36,13 @@ PImage[] attack= new PImage[3]; //creating attack array with 3 images
 
 PImage[] Zeusgif = new PImage[16];
 
+PImage[] Kratosgif = new PImage[12];
+
 int whichAttack=0; // creates variable for tracking position in attack array
 
 int whichZeusgif;
+
+int whichKratosgif;
 
 
 //____________________________
@@ -48,10 +52,11 @@ int whichZeusgif;
 
 void setup() {
   size(1080, 720);
-
+  frameRate(30);
   img = loadImage("KratosWins.jpg");
   font = createFont("SourceSansPro-Regular.ttf", 32); //load font file from data folder
   textFont(font);
+
 
 
   //loading each image individually
@@ -59,6 +64,28 @@ void setup() {
   attack[0]= loadImage ("charge.gif");
   attack[1]= loadImage ("slash.gif");
   attack[2]= loadImage ("sword.gif");
+
+
+  Kratosgif[0] = loadImage ("Kratosgif0.png");
+  Kratosgif[1] = loadImage ("Kratosgif1.png");
+  Kratosgif[2] = loadImage ("Kratosgif2.png");
+  Kratosgif[3] = loadImage ("Kratosgif3.png");
+  Kratosgif[4] = loadImage ("Kratosgif4.png");
+  Kratosgif[5] = loadImage ("Kratosgif5.png");
+  Kratosgif[6] = loadImage ("Kratosgif6.png");
+  Kratosgif[7] = loadImage ("Kratosgif7.png");
+  Kratosgif[8] = loadImage ("Kratosgif8.png");
+  Kratosgif[9] = loadImage ("Kratosgif9.png");
+  Kratosgif[10] = loadImage ("Kratosgif10.png");
+  Kratosgif[11] = loadImage ("Kratosgif11.png");
+
+
+
+
+
+
+
+
 
 
 
@@ -109,8 +136,10 @@ void game() {
   background(102, 202, 255);
   stroke(0);
   fill(0, 166, 15);
-  textSize(32);
-  text("Strike Zeus with your blades!", 860, 40, 240, 100);
+  font = createFont("SourceSansPro-Regular.ttf", 32); //load font file from data folder
+  textFont(font, 20);
+
+  text("HELP! POWER UP AND STRIKE HIM BEFORE THE ORB GETS ME!!!", 860, 40, 240, 100);
 
   image(attack[whichAttack], width/2, height/2, 200, 200); //drawing attack image from array and setting parameters
 
@@ -518,12 +547,22 @@ void mousePressed() {
 //titlescreen
 
 void titlescreen() {
-  background(255);
-  fill(0);
-  text("JUDGEMENT OF THE GODS", width/4, height/4);
-  text("CLICK TO START GAME", width/2, height/2);
 
-  image(Zeusgif[frameCount%16], 210, 230);
+  background(255);
+  PFont Guazhiru;
+  Guazhiru = createFont("Guazhiru.ttf", 86);
+
+  fill(0);
+  textFont(Guazhiru, 50);
+  text("Nicholas Ramdin", 150, 700);
+
+  textFont(Guazhiru);
+  text("JUDGEMENT OF THE GODS", 500, 200);
+  text("CLICK TO START GAME", 550, 300);
+
+
+  image(Zeusgif[frameCount%16], 110, 130);
+  image(Kratosgif[frameCount%12], 680, 450);
 }
 
 
@@ -564,5 +603,14 @@ void gameover() {
  Kratos Wins image source:
  https://www.deviantart.com/dimension-dino/art/Death-Battle-Kratos-vs-Guts-314452257
  
+ Kratos.Gif image source:
+ https://www.pinterest.com/pin/11259067793894929/
+ 
  __________________
+ 
+ Title screen Guazhiru Font
+ license: Freeware, Non-Commercial
+ link: https://www.fontspace.com/guazhiru-font-f24042
+ 
+ 
  */
