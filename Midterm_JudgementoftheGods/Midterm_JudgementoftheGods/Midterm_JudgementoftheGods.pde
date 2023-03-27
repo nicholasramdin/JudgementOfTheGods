@@ -16,9 +16,14 @@
 
 // Defeat Zeus by hitting him with Kratos's blades (move blades into Zeus with mouse) while powered up (while holding the up key)
 
+import processing.sound.*;
+
+SoundFile music;
 
 
 String state = "titlescreen";
+
+
 
 // for Zeus's orb attack
 float circleX = 150;
@@ -68,7 +73,10 @@ void setup() {
   font = createFont("SourceSansPro-Regular.ttf", 32); //load font file from data folder
   textFont(font);
 
-
+  music = new SoundFile(this, "music.mp3");
+  music.play();
+  music.amp(.1);
+  music.loop();
 
 
   //loading each image individually
