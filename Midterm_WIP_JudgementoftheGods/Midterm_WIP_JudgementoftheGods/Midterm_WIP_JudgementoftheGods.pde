@@ -1,6 +1,6 @@
 // Judgment of the Gods by Nicholas Ramdin
 
-// press and hold left button on your mouse for Atreus to release his energy orb
+// Protect the boy
 
 // attack Zeus with Kratos by moving your mouse
 
@@ -12,13 +12,17 @@
 
 // The theme for this sketch is a battle between mankind vs God(s).
 
-// Defeat Zeus by hitting him with Kratos's blades (move blades into Zeus with mouse)
+// Striking Zeus will reset the orb attack
+
+// Defeat Zeus by hitting him with Kratos's blades (move blades into Zeus with mouse) while powered up (while holding the up key)
+
+
 
 
 
 String state = "titlescreen";
 
-// for Atreus floating orb attack: triggered by mousePressed
+// for Zeus's orb attack
 int circleX = 150;
 float circleY = 210.8;
 int x = 50;
@@ -29,18 +33,18 @@ int explosionX = 150;
 //____________________________
 
 
-PImage img;
-PFont font;
+PImage img; // Kratos Wins Image
+PFont font; // SourceSansPro Font
 
-PImage ZeusWins;
+PImage ZeusWins; // Image on defeat screen
 
 PImage[] attack= new PImage[3]; //creating attack array with 3 images
 
-PImage[] Zeusgif = new PImage[16];
+PImage[] Zeusgif = new PImage[16]; // Zeus gif array for titlescreen
 
-PImage[] Kratosgif = new PImage[12];
+PImage[] Kratosgif = new PImage[12]; //Kratos gif for titlescreen
 
-PImage[] Spellgif = new PImage[15];
+PImage[] Lightning =  new PImage[9]; // Lightning bolts for game state
 
 int whichAttack=0; // creates variable for tracking position in attack array
 
@@ -48,7 +52,11 @@ int whichZeusgif;
 
 int whichKratosgif;
 
-int whichSpellgif;
+
+
+int whichLightning;
+
+
 //____________________________
 
 
@@ -86,14 +94,6 @@ void setup() {
 
 
 
-
-
-
-
-
-
-
-
   Zeusgif[0] = loadImage ("zeusframe0.png");
   Zeusgif[1] = loadImage ("zeusframe1.png");
   Zeusgif[2] = loadImage ("zeusframe2.png");
@@ -112,24 +112,26 @@ void setup() {
   Zeusgif[15] = loadImage ("zeusframe15.png");
 
 
-  Spellgif[0] = loadImage ("spellframe0.png");
-  Spellgif[1] = loadImage ("spellframe1.png");
-  Spellgif[2] = loadImage ("spellframe2.png");
-  Spellgif[3] = loadImage ("spellframe3.png");
-  Spellgif[4] = loadImage ("spellframe4.png");
-  Spellgif[5] = loadImage ("spellframe5.png");
-  Spellgif[6] = loadImage ("spellframe6.png");
-  Spellgif[7] = loadImage ("spellframe7.png");
-  Spellgif[8] = loadImage ("spellframe8.png");
-  Spellgif[9] = loadImage ("spellframe9.png");
-  Spellgif[10] = loadImage ("spellframe10.png");
-  Spellgif[11] = loadImage ("spellframe11.png");
-  Spellgif[12] = loadImage ("spellframe12.png");
-  Spellgif[13] = loadImage ("spellframe13.png");
-  Spellgif[14] = loadImage ("spellframe14.png");
+
+
+
+  Lightning[0] = loadImage ("lightningframe0.png");
+  Lightning[1] = loadImage ("lightningframe1.png");
+  Lightning[2] = loadImage ("lightningframe2.png");
+  Lightning[3] = loadImage ("lightningframe3.png");
+  Lightning[4] = loadImage ("lightningframe4.png");
+  Lightning[5] = loadImage ("lightningframe5.png");
+  Lightning[6] = loadImage ("lightningframe6.png");
+  Lightning[7] = loadImage ("lightningframe7.png");
+  Lightning[8] = loadImage ("lightningframe8.png");
 }
 
+
+
+
+
 //____________________________
+
 
 
 
@@ -139,10 +141,10 @@ void draw() {
     titlescreen();
   } else if (state=="game") {
     game();
-  } else if (state=="gameover") {
-    gameover();
-  } else if (state=="defeatscreen") {
-    defeatscreen();
+  } else if (state=="win") {
+    win();
+  } else if (state=="lose") {
+    lose();
   }
 
   println(state);
@@ -157,30 +159,58 @@ void draw() {
 
 
 void game() {
-
-  background(102, 202, 255);
+  background(0);
   stroke(0);
   fill(0, 166, 15);
+  PFont Guazhiru;
+  PFont font;
   font = createFont("SourceSansPro-Regular.ttf", 32); //load font file from data folder
   textFont(font, 20);
-
-  text("HELP! POWER UP AND STRIKE HIM BEFORE THE ORB GETS ME!!!", 860, 40, 240, 100);
+  fill(255);
+  text("HELP! POWER UP AND STRIKE HIM BEFORE THE ORB GETS ME!!!", 860, 40, 240, 100); //Atreus text
 
   image(attack[whichAttack], width/2, height/2, 200, 200); //drawing attack image from array and setting parameters
-
+  Guazhiru = createFont("Guazhiru.ttf", 86);
+  textFont(font, 40);
+  fill(181, 0, 0);
+  text("PROTECT THE BOY", 100, 600);
   println (whichAttack);
+
+
+
+  //____________________________
+
   //ground under Kratos
+
+  fill(0, 181, 0);
   rect(600, 600, 500, 500);
 
   //high ground under Atreus
   rect(920, 210, 400, 400);
 
 
+  //____________________________
 
+
+  // if Kratos has not defeated Zeus
+
+  if (mouseX > 150) {
+    Zeus();
+  }
+
+
+  // if Kratos's fireblades hit Zeus, load Defeated Zeus
+  else if (mouseX < 150) {
+
+    defeatedZeus();
+    circleX=150;
+  }
 
 
 
   //____________________________
+
+
 
   atreus();
   //____________________________
@@ -192,117 +222,43 @@ void game() {
 
 
 
-  //Atreus's floating orb attack
-/*
-  if (mousePressed == true) { //if mouse is pressed, create growing moving ellipse and color them hot pink)
-    stroke(255);
-    fill(240, 255, 45);
-    ellipse(circleX, circleY, x++, x++);
-    circleX = circleX + 6;
-    spellrunes(); // when mouse is pressed activate user function to draw charging spellrune circles
-  } else if (mousePressed == false) { //Atreus on standby with energy orb stored in box. Fill is hot pink.
-    stroke(255);
-    fill(255, 0, 151);
-    rect(935, 180, 30, 60);
-    ellipse(950, 160, 40, 40);
-    rect(900, 210, 50, 50);
 
-    fill(255);
-    ellipse(940, 160, 10, 10);
-    ellipse(950, 160, 10, 10);
-  }
-*/
-
- stroke(255);
-    fill(240, 255, 45);
-    ellipse(circleX, circleY, 100, 300);
-    circleX = circleX + 6;
-    spellrunes(); 
-
-
-
-
-  if (circleX < 800) {
-
-    state="game";
-  }else if (circleX > 800){
-    
-    state = "defeatscreen";
-    circleX=150;
-    
-  }
-
-
-  //else if (explosionX) {
-
-  //state =  "gameover()";
+  stroke(255);
+  fill(240, 255, 45);
+  ellipse(circleX, circleY, 100, 300);
+  circleX = circleX + 10;
+  lightning();
 
 
   //____________________________
 
 
 
+  if (circleX < 800) {
 
+    state="game";
+  } else if (circleX > 800) {
 
-
-  // if Kratos has not defeated Zeus
-
-
-  if (mouseX > 150) {
-
-
-    Zeus();
-  }
-
-  // if Kratos's fireblades hit Zeus, load Defeated Zeus
-
-  else {
-    state="gameover";
+    state = "lose";
+    circleX=150;
   }
 }
 
-//____________________________
-
-
-
-
-//void explosion() {
-
-
-//defeatscreen();
-//}
-
-
-
-
-
 
 //____________________________
 
 
 
+void lightning() {
 
 
-
-
-void spellrunes() {
-
-  //Ellipses drawn to charge Atreus orb. Will animate this further later with timing functions + fill(). Orb will change color as it passes through each ellipse. Measured by timing fuction.
-
-  for (int i = 500; i < 600; i=i+100) {
-    stroke(0);
-   
-    image(Spellgif[frameCount%15], 250, 50);
-  }
+  image(Lightning[frameCount%9], 250, 5);
+  image(Lightning[frameCount%9], 550, 5);
 }
 
 
 
 //____________________________
-
-
-
-
 
 
 
@@ -484,9 +440,6 @@ void Zeus() {
 
 
 
-
-
-
 //____________________________
 
 
@@ -553,7 +506,20 @@ void defeatedZeus() {
 void keyPressed() {
   if (key == CODED) {
     if (keyCode == UP) {
+      // if Kratos has not defeated Zeus
 
+
+      if (mouseX > 150) {
+
+
+        Zeus();
+      }
+
+      // if Kratos's fireblades hit Zeus, load Defeated Zeus
+
+      else {
+        state="win";
+      }
       kratosPOWERUP();
     } else {
       kratos();
@@ -566,15 +532,15 @@ void keyPressed() {
 
 
 
-// mousePress function to click to start game from titlescreen to game and from gameover and return
+// mousePress function to click to start game from titlescreen to game and from gameover and return also implementing victoryscreen and defeatscreen on win and lose conditions
 
 void mousePressed() {
 
   if (state== "titlescreen") {
     state="game";
-  } else if (state=="gameover") {
+  } else if (state=="win") {
     state= "titlescreen";
-  } else if (state=="defeatscreen") {
+  } else if (state=="lose") {
     state = "titlescreen";
   }
 
@@ -594,12 +560,20 @@ void titlescreen() {
 
   background(255);
   PFont Guazhiru;
+  PFont font;
   Guazhiru = createFont("Guazhiru.ttf", 86);
+  font = createFont("SourceSansPro-Regular.ttf", 32); //load font file from data folder
 
+
+  fill(255, 0, 0);
+  textFont(Guazhiru, 40);
+  text("Controls", 100, 500);
   fill(0);
-  textFont(Guazhiru, 50);
-  text("Nicholas Ramdin", 150, 700);
-
+  textFont(font, 20);
+  text("Move the mouse to control your blades", 100, 550);
+  text("Hold down the UP arrow key to Power Up", 100, 600);
+  textFont(font, 15);
+  text("Nicholas Ramdin", 900, 700);
   textFont(Guazhiru);
   text("JUDGEMENT OF THE GODS", 500, 200);
   text("CLICK TO START GAME", 550, 300);
@@ -615,8 +589,9 @@ void titlescreen() {
 //____________________________
 
 
+//if the player loses
 
-void defeatscreen() {
+void lose() {
   background(255, 0, 0);
 
   image(ZeusWins, 100, 100); // load win image if blades hit Zeus
@@ -628,32 +603,12 @@ void defeatscreen() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //____________________________
 
 
-//gameover
+//if the player wins
 
-void gameover() {
+void win() {
   background(0, 255, 0);
   for (int i = 60; i < 200; i=i+20) { //rain from cloud when Zeus is defeated
     stroke(0, 0, 255);
@@ -661,8 +616,8 @@ void gameover() {
     image(img, 200, 100); // load win image if blades hit Zeus
     font = createFont("SourceSansPro-Regular.ttf", 32); //load font file from data folder
     textFont(font, 25);
-    text("YOU WIN!", 700, 550);
-    text("CLICK TO RETURN TO THE TITLE SCREEN", 600, 600);
+    text("YOU WIN!", 100, 550);
+    text("CLICK TO RETURN TO THE TITLE SCREEN", 100, 600);
   }
 
   defeatedZeus();
