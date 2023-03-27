@@ -18,12 +18,10 @@
 
 
 
-
-
 String state = "titlescreen";
 
 // for Zeus's orb attack
-int circleX = 150;
+float circleX = 150;
 float circleY = 210.8;
 int x = 50;
 float r= 0;
@@ -69,6 +67,7 @@ void setup() {
   ZeusWins = loadImage("ZeusWins.png");
   font = createFont("SourceSansPro-Regular.ttf", 32); //load font file from data folder
   textFont(font);
+
 
 
 
@@ -227,6 +226,7 @@ void game() {
   fill(240, 255, 45);
   ellipse(circleX, circleY, 100, 300);
   circleX = circleX + 10;
+
   lightning();
 
 
@@ -572,6 +572,7 @@ void titlescreen() {
   textFont(font, 20);
   text("Move the mouse to control your blades", 100, 550);
   text("Hold down the UP arrow key to Power Up", 100, 600);
+  text("Click the mouse to cycle through different attacks", 100, 650);
   textFont(font, 15);
   text("Nicholas Ramdin", 900, 700);
   textFont(Guazhiru);
@@ -598,11 +599,11 @@ void lose() {
   Guazhiru = createFont("Guazhiru.ttf", 86);
   image(ZeusWins, 100, 100); // load win image if blades hit Zeus
   font = createFont("SourceSansPro-Regular.ttf", 32); //load font file from data folder
-  fill(181,0,0);
-  textFont(Guazhiru,100);
+  fill(181, 0, 0);
+  textFont(Guazhiru, 100);
   text("YOU LOSE!", 300, 250);
-  fill(0,181,181);
-  textFont(font,30);
+  fill(0, 181, 181);
+  textFont(font, 30);
   text("CLICK TO RETURN TO THE TITLE SCREEN", 120, 300);
 }
 
@@ -640,20 +641,45 @@ void win() {
 /* Citations
  
  IMAGES
- ____________
+ 
+ //____________________________
  Kratos Wins image source:
  https://www.deviantart.com/dimension-dino/art/Death-Battle-Kratos-vs-Guts-314452257
  
- Kratos.Gif image source:
- https://www.pinterest.com/pin/11259067793894929/
  
  ZeusWins image source screenshot from this video:
  https://www.youtube.com/watch?v=OyrFbtlSSSw
- __________________
+ 
+ slash.gif/sword.gif/charge.gif image source:
+ https://ceotrendsummitjibril.blogspot.com/2022/02/view-21-animated-sword-slash-gif.html
+ 
+ 
+ 
+ //____________________________
+ 
+ 
+ GIFS
+ 
+ Kratos Gif  on titlescreen image source:
+ https://www.pinterest.com/pin/11259067793894929/
+ 
+ Lightning GIF image source:
+ https://i.gifer.com/origin/58/580173ef50289fd49e55e77e6690fe46_w200.gif
+ 
+ Zeus Gif on title screen image source:
+ https://www.thelastdialogue.org/article/quran-miracle-it-mentions-one-god-without-any-partner/
+ 
+ 
+ //____________________________
+ 
+ FONT
  
  Title screen Guazhiru Font
  license: Freeware, Non-Commercial
  link: https://www.fontspace.com/guazhiru-font-f24042
  
+ 
+ 
+ //____________________________
  
  */
