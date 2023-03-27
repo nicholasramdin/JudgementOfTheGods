@@ -16,6 +16,8 @@
 
 // Defeat Zeus by hitting him with Kratos's blades (move blades into Zeus with mouse) while powered up (while holding the up key)
 
+// Left arrow key to turn music off in game() Right arrow key to turn music back on in game() (toggle music on/off function available only within game state) **for development/testing**
+
 import processing.sound.*;
 
 SoundFile music;
@@ -513,6 +515,14 @@ void defeatedZeus() {
 
 void keyPressed() {
   if (key == CODED) {
+    if(keyCode == LEFT){
+      
+      music.stop();
+    }
+    if(keyCode == RIGHT){
+      music.play();
+    }
+    
     if (keyCode == UP) {
       // if Kratos has not defeated Zeus
 
