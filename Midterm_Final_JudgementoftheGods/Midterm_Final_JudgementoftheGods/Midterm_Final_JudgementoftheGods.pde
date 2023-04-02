@@ -75,9 +75,9 @@ void setup() {
   font = createFont("SourceSansPro-Regular.ttf", 32); //load font file from data folder
   textFont(font);
 
-  music = new SoundFile(this, "music.mp3");
+  music = new SoundFile(this, "music.wav");
   music.play();
-  music.amp(.1);
+  music.amp(.6);
   music.loop();
 
 
